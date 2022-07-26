@@ -1,22 +1,33 @@
 {% extends "base.html" %}{% block content %}
-    <h1>Recent Posts</h1>
-    {% comment %}here is where the query happens{% endcomment %}
-    {% for post in posts %}
-    <div class="post">
-    <h2>
-        <a href="{% url 'blog_detail' post.pk %}">{{ post }}</a>
-    </h2>
-    <p class="byline">
-        Posted by {{ post.author_name }} &mdash; {{ post.published_date }}
-    </p>
-    <div class="post-body">
-        {{ post.text }}
-    </div>
-    <ul class="categories">
-        {% for category in post.categories.all %}
-            <li>{{ category }}</li>
+    {% if cat_posts %}
+    <h1>Categorized Posts:
+        {% for cat in cat_posts %}
+            {{ cat }}
         {% endfor %}
-    </ul>
-    </div>
+    </h1>
+    {% else %}
+    <h1>Recent Posts</h1>
+    {% endif %}
+    {% comment %}here is where the query happens{% endcomment %}
+
+    {% for post in posts %}
+        <div class="post">
+            <h2>
+                <a href="{% url 'blog_detail' post.pk %}">{{ post }}</a>
+            </h2>
+            <p class="byline">
+                Posted by {{ post.author }} &mdash; {{ post.published_date }}
+            </p>
+            <div class="post-body">
+                {{ post.text }}
+            </div>
+            <ul class="categories">
+                {% for category in post.categories.all %}
+                        <a class="btn btn-outline-primary rounded-pill" href="{% url 'blog_cat' category.id %}">{{ category }}</a>
+                {% endfor %}
+            </ul>
+            <hr>
+        </div>
     {% endfor %}
+
 {% endblock %}
