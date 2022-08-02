@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#ipg)2sqfu@nf&a0d_7@^xqk_6h#xw(1s*ro=&5)6gik^$irwe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['34.218.229.159']
-STATIC_ROOT = '/var/www/mysite/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Application definition
 
