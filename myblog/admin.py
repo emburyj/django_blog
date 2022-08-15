@@ -17,7 +17,7 @@ def make_published(modeladmin, request, queryset):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [(None, {'fields': ('title', 'text', 'author', 'published_date')})]
-    readonly_fields = ('title',)
+    #readonly_fields = ('title',)
     list_display = ('title','author_for_admin','created_date', 'modified_date')
     inlines = [CategoryInline]
 
